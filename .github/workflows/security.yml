@@ -13,15 +13,15 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: 20.x
-            - name: Get NPM cace directory
+            - name: Get NPM cache directory
               id: npm-cache
               run: |
                   echo "::set-output name=dir::$(npm config get cache)"
             - name: Cache NPM
               uses: actions/cache@v4
               with:
-                  path: ${{  steps.npm-cache.outputs.dir }}
-                  key: ${{  runner.os }}-node-${{  hashFiles('**/package-lock.json') }}
+                  path: ${{ steps.npm-cache.outputs.dir }}
+                  key: ${{ runner.os }}-node-${{  hashFiles('**/package-lock.json') }}
                   restore-keys: |
                       ${{  runner.os }}-node-
             - name: Install dependencies
